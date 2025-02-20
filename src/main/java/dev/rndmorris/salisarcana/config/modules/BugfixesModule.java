@@ -21,6 +21,8 @@ public class BugfixesModule extends BaseConfigModule {
     public final ToggleSetting strictInfusionMatrixInputChecks;
     public final ToggleSetting unOredictGoldCoin;
     public final ToggleSetting staffFocusEffectFix;
+    public final ToggleSetting arcaneWorkbenchGhostItemFix;
+    public final ToggleSetting arcaneWorkbenchAllowRechargeCrafting;
 
     public BugfixesModule() {
         addSettings(
@@ -84,7 +86,17 @@ public class BugfixesModule extends BaseConfigModule {
                 this,
                 ConfigPhase.LATE,
                 "staffFocusEffectFix",
-                "Fixes a graphical error where focus effects would appear below the tip of a staff."));
+                "Fixes a graphical error where focus effects would appear below the tip of a staff."),
+            arcaneWorkbenchGhostItemFix = new ToggleSetting(
+                this,
+                ConfigPhase.LATE,
+                "arcaneWorkbenchGhostItemFix",
+                "Fixes ghost items being crafted in the arcane workbench after the wand runs out of vis during a shift-click craft."),
+            arcaneWorkbenchAllowRechargeCrafting = new ToggleSetting(
+                this,
+                ConfigPhase.LATE,
+                "arcaneWorkbenchAllowRechargeCrafting",
+                "Allows players to craft after the wand in the GUI runs out of vis and is recharged by a Vis Charge Relay."));
     }
 
     @Nonnull

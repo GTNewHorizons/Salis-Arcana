@@ -61,6 +61,9 @@ public class EnhancementsModule extends BaseConfigModule {
     public final ToggleSetting rottenFleshRecipe;
     public final ToggleSetting crystalClusterUncrafting;
 
+    public final ToggleSetting staffterNameTooltip;
+    public final ToggleSetting primalCrusherOredict;
+
     public EnhancementsModule() {
         // spotless:off
         addSettings(
@@ -86,6 +89,11 @@ public class EnhancementsModule extends BaseConfigModule {
                 ConfigPhase.EARLY,
                 "enableLookalikePlanks",
                 "Add look-a-like greatwood and silverwood planks that behave as normal planks, instead of the weirdness of TC4's planks."),
+            staffterNameTooltip = new ToggleSetting(
+                this,
+                ConfigPhase.LATE,
+                "staffterNameTooltip",
+                "Causes staffters to use their own translation string rather than being called \"Staff\" in the tooltip."),
             nodeModifierWeights = new IntArraySetting(
                 this,
                 ConfigPhase.EARLY,
@@ -243,7 +251,13 @@ public class EnhancementsModule extends BaseConfigModule {
                 this,
                 ConfigPhase.LATE,
                 "crystalClusterUncrafting",
-                "Add crafting recipes to convert crystal cluster blocks back into primal shards. Does not work for mixed crystal clusters.").setCategory("recipes")
+                "Add crafting recipes to convert crystal cluster blocks back into primal shards. Does not work for mixed crystal clusters.").setCategory("recipes"),
+            primalCrusherOredict = new ToggleSetting(
+                this,
+                ConfigPhase.EARLY,
+                "primalCrusherMinesOredictionaryStone",
+                "Allows the primal crusher to 3x3 mine blocks registered as stone, cobblestone, or stoneBricks in the ore dictionary."
+            )
         );
 
         // spotless:on

@@ -21,6 +21,12 @@ Want tainted lands to look like The Crimson? Want the eerie biome that manifests
 Adds decorative Greatwood and Silverwood plank blocks that behave as normal blocks should. Allows using those textures
 while avoiding the weirdness in Thaumcraft's plank blocks implementation.
 
+## Staffter Custom Name
+
+**Config option:** `staffterNameTooltip`
+
+Causes staffters to use their own translation string rather than being called "Staff" in the tooltip.
+
 ## Increased Item Stack Size
 
 Config Option: `eldritchObjectStackSize`
@@ -42,6 +48,12 @@ Adds tab completion to the `/thaumcraft command`
 Config Option: `thaumcraftCommandWarpArgAll`
 
 Adds an ALL parameter to the `/thaumcraft warp` command
+
+## Primal Crusher Ore Dictionary Stone Support
+
+Config Option: `primalCrusherMinesOredictionaryStone`
+
+Allows the primal crusher to 3x3 mine blocks registered as stone, cobblestone, or stoneBricks in the ore dictionary.
 
 ## Enhancements - Creative Mode
 
