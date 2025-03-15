@@ -34,6 +34,12 @@ sometimes makes an infusion altar slightly less stable than it should be.
 
 Check the infusion matrix's center item more strictly. Prevents an exploit with infusion enchanting.
 
+## Nonnegative Boss Spawn Count
+
+**Config option:** `negativeBossSpawnCount`
+
+Fixes a theoretical bug where, if billions of bosses were spawned, only the golem boss would be able to spawn.
+
 ## Metadata Safety Checks
 
 **Config option:** `candleMetadataCrash`
@@ -55,6 +61,16 @@ Affected items include:
 **Config option:** `shardMetadataCrash`,
 
 Add a safety check to prevent the creation of Thaumcraft shards with invalid metadata.
+
+## Fake Player Safety Checks
+
+**Config option:** `warpFakePlayerCheck`
+
+Adds a safety check to prevent warp effects from trying to send packets to fake players.
+
+**Config option:** `crimsonRitesFakePlayerCheck`
+
+Adds a safety check in case of a fake player not being castable to `EntityPlayerMP`. (For example, putting Crimson Rites into a Dynamism Tablet from Thaumic Tinkerer.)
 
 ## TC4 Ores Redstone Fix
 
