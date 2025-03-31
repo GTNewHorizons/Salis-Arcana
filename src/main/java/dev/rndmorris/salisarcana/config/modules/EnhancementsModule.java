@@ -68,6 +68,10 @@ public class EnhancementsModule extends BaseConfigModule {
     public final IntSetting thaumometerDuration;
     public final ToggleSetting researchItemExtensions;
 
+    public final ToggleSetting notifyMissingResearchWorkbench;
+    public final ToggleSetting notifyMissingResearchInfusion;
+    public final ToggleSetting notifyMissingResearchCrucible;
+
     public EnhancementsModule() {
         // spotless:off
         addSettings(
@@ -224,13 +228,33 @@ public class EnhancementsModule extends BaseConfigModule {
                 this,
                 "thaumometerDuration",
                 "The duration in ticks that the thaumometer takes to scan an object.",
-                20).setMinValue(1),
+                20).setMinValue(1)
+notifyMissingResearchWorkbench = new ToggleSetting(
+                this,
+                "notifyMissingResearchWorkbench",
+                "Displays a \"missing research\" message in the Arcane Workbench GUI when recipe fails for lack of research."),
+            notifyMissingResearchInfusion = new ToggleSetting(
+                this,
+                "notifyMissingResearchInfusion",
+                "Displays a \"missing research\" message to the player when an infusion recipe fails for lack of research."),
+            notifyMissingResearchCrucible = new ToggleSetting(
+                this,
+                "notifyMissingResearchCrucible",
+                "Displays a \"missing research\" message to the player when a crucible recipe fails for lack of research."),
+            taintedItemDecayChance = new IntSetting(
+                this,
+                "taintedItemDecayChance",
+                "The probability each tick that tainted goo and taint tendrils will decay. Lower numbers are more probable, higher numbers are less probable. Set to -1 to disable decay entirely.",
+                4321).setMinValue(-1),
             researchItemExtensions = new ToggleSetting(
                 this,
                 "researchItemExtensions",
-                "Adds additional functionality to internal research data. Used for compatibility with other mods (e.g. Automagy, Thaumic Tinkerer).")
+                "Adds additional functionality to internal research data. Used for compatibility with other mods (e.g. Automagy, Thaumic Tinkerer)."),
+            focalDisenchanterReturnXP = new ToggleSetting(
+                this,
+                "focalDisenchanterReturnXP",
+                "If an upgrade fails to complete or is cancelled, the XP spent will get returned to the player.")
         );
-
         // spotless:on
         addSettings(
             stabilizerAdditions = new BlockItemListSetting<Integer>(
