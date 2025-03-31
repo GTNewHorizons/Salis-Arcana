@@ -217,7 +217,7 @@ public class EnhancementsModule extends BaseConfigModule {
                 this,
                 "thaumometerDuration",
                 "The duration in ticks that the thaumometer takes to scan an object.",
-                20).setMinValue(1)
+                20).setMinValue(1),
 notifyMissingResearchWorkbench = new ToggleSetting(
                 this,
                 "notifyMissingResearchWorkbench",
