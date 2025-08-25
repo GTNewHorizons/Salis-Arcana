@@ -80,10 +80,16 @@ public enum Mixins implements IMixins {
         .applyIf(SalisConfig.bugfixes.arcaneWorkbenchMultiContainer)
         .addCommonMixins("container.MixinContainerArcaneWorkbench_MultiContainer")
         .addRequiredMod(TargetedMod.THAUMCRAFT)),
-    MULTI_CONTAINER_NEI_FIX(new SalisBuilder()
-        .applyIf(SalisConfig.bugfixes.arcaneWorkbenchMultiContainer)
-        .addClientMixins("addons.ThaumcraftNEIPlugin.MixinArcaneWorkbenchOverlayHandler")
-        .addRequiredMod(TargetedMod.THAUMCRAFT_NEI_PLUGIN)
+    CACHE_ARCANE_WORKBENCH_RECIPE(new SalisBuilder()
+        .applyIf(SalisConfig.bugfixes.arcaneWorkbenchCache)
+        .addCommonMixins(
+            "container.MixinContainerArcaneWorkbench_UseCache",
+            "lib.MixinThaumcraftCraftingManager_UseCache",
+            "tiles.MixinTileMagicWorkbench_CacheRecipe")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
+    MUNDANE_CRAFT_FORGE_EVENT_BRIDGE(new SalisBuilder()
+        .applyIf(SalisConfig.bugfixes.arcaneWorkbenchForgeEventBridge)
+        .addCommonMixins("container.MixinSlotCraftingArcaneWorkbench_ForgeEventBridge")
         .addRequiredMod(TargetedMod.THAUMCRAFT)),
     THAUMATORIUM_MULTI_CONTAINER(new SalisBuilder()
         .applyIf(SalisConfig.bugfixes.thaumatoriumMultiContainer)
@@ -460,6 +466,11 @@ public enum Mixins implements IMixins {
         .addCommonMixins("items.MixinItemFocusPouchBauble_ExpandedBaublesSlot")
         .addRequiredMod(TargetedMod.THAUMCRAFT)
         .addRequiredMod(TargetedMod.BAUBLES_EXPANDED)),
+
+    POTION_ID_OVERRIDE(new SalisBuilder()
+        .setApplyIf(SalisConfig.thaum::anyPotionIdOverrideActive)
+        .addCommonMixins("config.MixinConfig_PotionIds")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
 
     // Required
     ADD_VISCONTAINER_INTERFACE(new SalisBuilder()
