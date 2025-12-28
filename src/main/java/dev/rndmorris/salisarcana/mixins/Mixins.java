@@ -226,6 +226,18 @@ public enum Mixins implements IMixins {
         .applyIf(SalisConfig.bugfixes.earlyTerminateCrucibleCraft)
         .addCommonMixins("tiles.MixinTileCrucible_EarlyTerminateCraft")
         .addRequiredMod(TargetedMod.THAUMCRAFT)),
+    PREVENT_INVALID_FOCI(new SalisBuilder()
+        .applyIf(SalisConfig.bugfixes.preventInvalidFociOnWands)
+        .addCommonMixins("items.MixinItemWandCasting_InvalidFoci")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
+    HIDDEN_RESEARCH_WORLD_RANDOM(new SalisBuilder()
+        .applyIf(SalisConfig.thaum.hiddenResearchUseWorldRandom)
+        .addCommonMixins("lib.research.MixinResearchManager_RandomizeProperly")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
+    HIDDEN_RESEARCH_CHECK_INVENTORY(new SalisBuilder()
+        .applyIf(SalisConfig.bugfixes.hiddenResearchCheckInventory)
+        .addCommonMixins("lib.research.MixinResearchManager_SkipResearchInInventory")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
 
     ELEMENTAL_PICK_SCAN_ZERO_ASPECTS(new SalisBuilder()
         .applyIf(SalisConfig.bugfixes.detectZeroAspectBlocks)

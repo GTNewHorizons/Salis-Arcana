@@ -289,6 +289,12 @@ Prevents a world object memory leak in the TeleporterThaumcraft class.
 
 Prevent warp sounds from blasting out your eardrums when you obtains lots of warp in an instant.
 
+## Handle Invalid Focus NBT on Wands
+
+**Config option:** `preventInvalidFociOnWands`
+
+Prevent wands with invalid foci NBT (from uninstalling add-ons, for example) from crashing the game.
+
 ## Pickaxe of the Core (Group `tools`)
 
 **Config option:** `detectZeroAspectBlocks`
@@ -306,3 +312,13 @@ Allows the pickaxe of the core to correctly detect vanilla lapis ore.
 
 Fixes a bug with the pickaxe of the core that caused it to rely on the damage value of the block's dropped item to
 identify a block instead of its in-world metadata when scanning for ores.
+
+## Hidden Research Notes
+
+**Config option:** `hiddenResearchUseWorldRandom`
+
+When right-clicking a Research Note made from Knowledge Fragments, will use a random value not dependent on the world's time of day.
+
+**Config option:** `hiddenResearchCheckInventory`
+
+When right-clicking a Research Note made from Knowledge Fragments, will not generate a research note you already have in your inventory.
