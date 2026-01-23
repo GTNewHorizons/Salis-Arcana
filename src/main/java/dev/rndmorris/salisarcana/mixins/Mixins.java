@@ -238,6 +238,14 @@ public enum Mixins implements IMixins {
         .applyIf(SalisConfig.bugfixes.hiddenResearchCheckInventory)
         .addCommonMixins("thaumcraft.common.lib.research.MixinResearchManager_SkipResearchInInventory")
         .addRequiredMod(TargetedMod.THAUMCRAFT)),
+    PREVENT_DEAD_ITEM_CRUCIBLE_DUPE(new SalisBuilder()
+        .applyIf(SalisConfig.bugfixes.crucibleDeadItemDupe)
+        .addCommonMixins("thaumcraft.common.tiles.MixinTileCrucible_NoDupeDeadItems")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
+    PREVENT_GOLEM_DROP_DUPLICATION(new SalisBuilder()
+        .applyIf(SalisConfig.bugfixes.preventGolemDropDuplication)
+        .addCommonMixins("thaumcraft.common.entities.golems.MixinItemGolemBell_PreventDeadInteractions")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
 
     ELEMENTAL_PICK_SCAN_ZERO_ASPECTS(new SalisBuilder()
         .applyIf(SalisConfig.bugfixes.detectZeroAspectBlocks)
@@ -255,6 +263,10 @@ public enum Mixins implements IMixins {
         .applyIf(SalisConfig.addons.automagyBoilerFakePlayer)
         .addCommonMixins("automagy.blocks.MixinBlockBoiler_FakePlayer")
         .addRequiredMod(TargetedMod.AUTOMAGY)),
+    RUNIC_MATRIX_OVERSTABLE_SHAKE(new SalisBuilder()
+        .applyIf(SalisConfig.bugfixes.stableRunicMatrixAnimation)
+        .addClientMixins("thaumcraft.client.renderers.tile.MixinTileRunicMatrixRenderer_StableAltar")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
 
     // Features
     EXTENDED_BAUBLES_SUPPORT(new SalisBuilder()
@@ -314,6 +326,7 @@ public enum Mixins implements IMixins {
         .applyIf(SalisConfig.features.stopCreativeModeItemConsumption)
         .addCommonMixins(
             "thaumcraft.common.blocks.MixinBlockEldritch_CreativeMode",
+            "thaumcraft.common.blocks.MixinBlockMetalDevice_CreativePreserveWater",
             "thaumcraft.common.items.MixinItemEssence_CreativeItemConsumption")
         .addRequiredMod(TargetedMod.THAUMCRAFT)),
 
