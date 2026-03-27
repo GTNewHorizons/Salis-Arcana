@@ -9,10 +9,20 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import org.lwjgl.input.Keyboard;
 
+import com.gtnewhorizons.tcwands.api.wandinfo.WandProps;
+import com.gtnewhorizons.tcwands.api.wrappers.AbstractWandWrapper;
+import com.gtnewhorizons.tcwands.api.wrappers.CapWrapper;
+import com.gtnewhorizons.tcwands.api.wrappers.SceptreWrapper;
+
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import dev.rndmorris.salisarcana.common.compat.GTNHTCWandsCompat;
+import dev.rndmorris.salisarcana.config.SalisConfig;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.wands.StaffRod;
+import thaumcraft.api.wands.WandCap;
+import thaumcraft.api.wands.WandRod;
 import thaumcraft.common.config.ConfigItems;
 
 public class WandPartTooltipEventHandler {
@@ -78,8 +88,13 @@ public class WandPartTooltipEventHandler {
                         baseCostString));
             }
 
-            event.toolTip.add(
-                StatCollector.translateToLocalFormatted("salisarcana:wand_cap.price_mult", wandCap.getCraftCost()));
+            int multiplier = wandCap.getCraftCost();
+
+            if (SalisConfig.modCompat.gtnhWands.isEnabled()) {
+                multiplier = getGTNHCapsMultiplier(wandCap, multiplier);
+            }
+
+            event.toolTip.add(StatCollector.translateToLocalFormatted("salisarcana:wand_cap.price_mult", multiplier));
 
             addMultilineTranslation(event.toolTip, "salisarcana:wand_cap.special." + wandCap.getTag());
 
@@ -90,8 +105,14 @@ public class WandPartTooltipEventHandler {
             event.toolTip.add(
                 StatCollector.translateToLocalFormatted("salisarcana:wand_rod.vis_capacity", wandRod.getCapacity()));
 
-            event.toolTip.add(
-                StatCollector.translateToLocalFormatted("salisarcana:wand_rod.base_price", wandRod.getCraftCost()));
+            boolean isStaff = wandRod instanceof StaffRod;
+            if (SalisConfig.modCompat.gtnhWands.isEnabled()
+                && getWrapper(wandRod, isStaff) instanceof SceptreWrapper wrapper) {
+                addGTNHCoreStats(event, wrapper, isStaff);
+            } else {
+                event.toolTip.add(
+                    StatCollector.translateToLocalFormatted("salisarcana:wand_rod.base_price", wandRod.getCraftCost()));
+            }
 
             if (wandRod instanceof StaffRod staff && staff.hasRunes()) {
                 event.toolTip.add(StatCollector.translateToLocal("salisarcana:wand_rod.runes"));
@@ -103,6 +124,34 @@ public class WandPartTooltipEventHandler {
                 event.toolTip.add(StatCollector.translateToLocal("salisarcana:wand_part.cannot_preserve_node"));
             }
         }
+    }
+
+    @Optional.Method(modid = "gtnhtcwands")
+    private static int getGTNHCapsMultiplier(WandCap wandCap, int multiplier) {
+        CapWrapper capWrapper = GTNHTCWandsCompat.getCapWrapper(wandCap);
+        if (capWrapper != null) {
+            multiplier = capWrapper.getCostMultiplier();
+        }
+        return multiplier;
+    }
+
+    @Optional.Method(modid = "gtnhtcwands")
+    private static void addGTNHCoreStats(ItemTooltipEvent event, SceptreWrapper wrapper, boolean isStaff) {
+        WandProps props = wrapper.getProps();
+        event.toolTip.add(
+            StatCollector.translateToLocalFormatted(
+                "salisarcana:wand_rod.gtnh_wands_price",
+                props.getBaseCost(),
+                props.getCapCost()));
+        event.toolTip.add(
+            StatCollector.translateToLocalFormatted(
+                isStaff ? "salisarcana:wand_rod.gtnh_staffter_mult" : "salisarcana:wand_rod.gtnh_scepter_mult",
+                wrapper.getSceptreCostMultiplier()));
+    }
+
+    @Optional.Method(modid = "gtnhtcwands")
+    private static AbstractWandWrapper getWrapper(WandRod wandRod, boolean isStaff) {
+        return GTNHTCWandsCompat.getWandWrapper(wandRod, isStaff ? WandType.STAFFTER : WandType.SCEPTER);
     }
 
     private static void addMultilineTranslation(final List<String> tooltip, final String langKey) {

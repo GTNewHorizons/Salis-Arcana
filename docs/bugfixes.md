@@ -217,11 +217,11 @@ Thaumcraft will correctly save ethereal bloom counters to disk, preventing the g
 
 Allows Thaumcraft crystal clusters to be harvested with Silk Touch, preventing them from dropping as shards.
 
-## Abandoned Crates & Old Urn Hitboxes
+## Prevent Alteration of Block Bounds
 
-**Config option:** `lootBlockHitbox`
+**Config option:** `fixBlockBoundsAlterations`
 
-Correctly sets the hitboxes of the Old Urn & Abandoned Crate, preventing a bug where you can phase through the blocks while mining them.
+Fixes numerous bugs related to collision boxes & block bounds, including glitchiness when standing on Essentia Reservoirs & falling through Old Urns & Abandoned Crates while mining them.
 
 ## Thaumatorium Multiplayer Bug-fix
 
@@ -346,3 +346,9 @@ Prevent players from disassembling golems that have already been killed in order
 **Config option:** `stableRunicMatrixAnimation`
 
 Runic Matrices which are too stable will not fly far out from the center of the multiblock.
+
+## Fix Wrong Aspects from being Rendered
+
+**Config option:** `fixInventoryAspects`
+
+Fixes a bug where some GUIs would render the wrong aspects when shifting over a slot. Also improves the performance of this overlay.
