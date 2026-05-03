@@ -153,7 +153,7 @@ public class ReplaceWandCoreRecipe implements IArcaneRecipe, IMultipleResearchAr
             if (wrapper == null) return null;
             WandDetails props = wrapper.getDetails();
             screwOreID = OreDictionary.getOreID(props.getScrew());
-            conductor = props.getConductor();
+            conductor = props.conductor();
         }
 
         // Second pass: check screws & conductors with GTNHTCWands or find garbage
