@@ -201,6 +201,8 @@ public class CommonProxy {
         return MinecraftServer.getServer().theProfiler;
     }
 
+    public void handlePortableHoleSync(int x, int y, int z) {}
+
     private void fixGolemFishingLists() {
         try {
             final var fishingHooks = new R(FishingHooks.class);
