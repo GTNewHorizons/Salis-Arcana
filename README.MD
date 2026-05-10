@@ -1,3 +1,5 @@
+# Upstream is active - Submit PRs There
+
 # Salis Arcana
 Secret salt to enhance and refine Thaumcraft 4
 
