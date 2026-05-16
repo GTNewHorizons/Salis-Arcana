@@ -59,12 +59,4 @@ public class ClientProxy extends CommonProxy {
     public Profiler getProfiler() {
         return Minecraft.getMinecraft().mcProfiler;
     }
-
-    @Override
-    public void handlePortableHoleSync(int x, int y, int z) {
-        World world = Minecraft.getMinecraft().theWorld;
-        if (world != null) {
-            thaumcraft.common.Thaumcraft.proxy.blockSparkle(world, x, y, z, 4194368, 1);
-        }
-    }
 }
