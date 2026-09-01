@@ -306,6 +306,14 @@ public enum Mixins implements IMixins {
         .applyIf(SalisConfig.bugfixes.stableRunicMatrixAnimation)
         .addClientMixins("thaumcraft.client.renderers.tile.MixinTileRunicMatrixRenderer_StableAltar")
         .addRequiredMod(TargetedMod.THAUMCRAFT)),
+    WARDING_USE_WORLD_METADATA(new SalisBuilder()
+        .applyIf(SalisConfig.bugfixes.wardingUseWorldMetadata)
+        .addCommonMixins("thaumcraft.common.items.wands.foci.MixinItemFocusWarding_UseWorldMetadata")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
+    WARDING_DONT_SAVE_NBT_META(new SalisBuilder()
+        .applyIf(SalisConfig.bugfixes.wardingDontStoreNBTMeta)
+        .addCommonMixins("thaumcraft.common.tiles.MixinTileWarded_DontStoreMetadata")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
 
     FIX_INVENTORY_ASPECTS(new SalisBuilder()
         .setApplyIf(() -> SalisConfig.bugfixes.fixInventoryAspects.isEnabled()
@@ -347,6 +355,12 @@ public enum Mixins implements IMixins {
         .applyIf(SalisConfig.thaum.pauseTCParticlesWithGame)
         .addClientMixins("thaumcraft.client.fx.MixinParticleEngine_PauseParticles")
         .addRequiredMod(TargetedMod.THAUMCRAFT)),
+    FIX_NODE_RENDERING(new SalisBuilder()
+        .applyIf(SalisConfig.bugfixes.fixRenderingLayers)
+        .addCommonMixins("thaumcraft.common.tiles.MixinTileNode_FixRenderingLayers")
+        .addCommonMixins("thaumcraft.common.tiles.MixinTileNodeEnergized_FixRenderingLayers")
+        .addClientMixins("thaumcraft.client.lib.MixinRenderEventHandler_FixRenderingLayers")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
     ALLOW_CONNECTED_LEAF_DROPS(new SalisBuilder()
         .applyIf(SalisConfig.bugfixes.allowDropsFromLiveLeaves)
         .addCommonMixins("thaumcraft.common.blocks.MixinBlockMagicalLeaves_AllowConnectedLeafDrops")
@@ -355,9 +369,17 @@ public enum Mixins implements IMixins {
         .applyIf(SalisConfig.bugfixes.reservoirsUseArgInGetEssentiaType)
         .addCommonMixins("thaumcraft.common.tiles.MixinTileEssentiaReservoir_UseArgInGetEssentiaType")
         .addRequiredMod(TargetedMod.THAUMCRAFT)),
+    GOLEM_FETTER_ACTIVATE_ON_PLACE(new SalisBuilder()
+        .applyIf(SalisConfig.bugfixes.activateGolemFetterOnPlace)
+        .addCommonMixins("thaumcraft.common.blocks.MixinBlockCosmeticSolid_ActivateFetterOnPlace")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
     FIX_AVG_VIS_COST_CALCULATION(new SalisBuilder()
         .applyIf(SalisConfig.bugfixes.fixWandAverageCostTooltip)
         .addCommonMixins("thaumcraft.common.items.wands.MixinItemWandCasting_UseRoundedAverageCost")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
+    TRAVELING_TRUNK_DONT_CONSUME_DEAD_ITEMS(new SalisBuilder()
+        .applyIf(SalisConfig.bugfixes.preventTravelingTrunkDupe)
+        .addCommonMixins("thaumcraft.common.entities.golems.MixinEntityTravelingTrunk_SkipDeadItems")
         .addRequiredMod(TargetedMod.THAUMCRAFT)),
 
     // Features

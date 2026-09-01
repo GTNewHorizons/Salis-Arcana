@@ -350,6 +350,11 @@ public class ConfigBugfixes extends ConfigGroup {
         "fixParticleEngineLeak",
         "Fix Thaumcraft's particle engine leaking the world instance");
 
+    public final ToggleSetting fixRenderingLayers = new ToggleSetting(
+        this,
+        "fixRenderingLayers",
+        "Fix Thaumcraft's Nodes, Energized Nodes, Node Aspect Tags, and Node Drain Beams rendering behind transparent blocks when they are in front of them.");
+
     public final ToggleSetting boreDecreaseCVisCheckFrequency = new ToggleSetting(
         this,
         "boreDecreaseCVisCheckFrequency",
@@ -375,10 +380,33 @@ public class ConfigBugfixes extends ConfigGroup {
         "fixWandAverageCostTooltip",
         "Tweak how a wand's average vis cost is calculated to display a more accurate number. Example: Thaumium+Silverwood scepters (20% discount) should now show 80% instead of 79%.");
 
+    public final ToggleSetting activateGolemFetterOnPlace = new ToggleSetting(
+        this,
+        "activateGolemFetterOnPlace",
+        "Make Golem Fetters activate instantly if they're placed into a location that is already receiving redstone power.");
+
     public final ToggleSetting fixNodeRemovingCircularCall = new ToggleSetting(
         this,
         "fixNodeRemovingCircularCall",
         "Prevent vis networks from sending block updates if the tile entity was invalidated, preventing an infinite recursion crash when empowering a node with Logistics Pipes installed.");
+
+    public final ToggleSetting wardingUseWorldMetadata = new ToggleSetting(
+        this,
+        "wardingUseWorldMetadata",
+        "Have Warded Blocks treat the world metadata as authoritative rather than the metadata stored in the NBT. Fixes metadata truncation with mods like NEID and EndlessIDs.");
+
+    public final ToggleSetting wardingDontStoreNBTMeta = new ToggleSetting(
+        wardingUseWorldMetadata,
+        "wardingDontStoreNBTMeta",
+        """
+            Stop Warded Blocks from storing their metadata in the NBT, reducing network traffic & save-file size. Requires `wardingUseWorldMetadata`.
+            WARNING: Any Warded Blocks loaded when this setting is enabled will become invalid if you uninstall Salis Arcana or disable `wardingUseWorldMetadata`.""")
+            .setEnabled(false);
+
+    public final ToggleSetting preventTravelingTrunkDupe = new ToggleSetting(
+        this,
+        "preventTravelingTrunkDupe",
+        "Prevent entropy-upgraded Traveling Trunks from absorbing dead items which may have been already collected by something else.");
 
     @Nonnull
     @Override

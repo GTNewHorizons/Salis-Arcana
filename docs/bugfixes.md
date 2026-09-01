@@ -377,6 +377,11 @@ Runic Matrices which are too stable will not fly far out from the center of the 
 
 Fixes a bug where some GUIs would render the wrong aspects when shifting over a slot. Also improves the performance of this overlay.
 
+## Fix Custom Renders Rendering Behind Transparent Blocks
+
+**Config option:** `fixNodeRendering`
+
+Fixes a bug where Nodes, Energized Nodes, Node Drain Beams, and Aspect Tags, would render as though behind transparent blocks when they are in front of them.
 ## Fix Arcane Bores look-up frequency
 
 **Config option:** `boreDecreaseCVisCheckFrequency`
@@ -407,6 +412,12 @@ Properly synchronizes the holes creates with the Portable Hole focus to the clie
 
 Force reservoirs to use the correct face when checking their essentia type. Allows downwards-facing reservoirs to be emptied by unlabeled jars placed directly below them.
 
+## Activate Golem Fetters When Placed
+
+**Config option:** `activateGolemFetterOnPlace`
+
+Make Golem Fetters activate instantly if they're placed into a location that is already receiving redstone power.
+
 ## Fix Wand Average Cost Tooltips
 
 **Config option:** `fixWandAverageCostTooltip`
@@ -418,3 +429,21 @@ Tweak how a wand's average vis cost is calculated to display a more accurate num
 **Config option:** `fixNodeRemovingCircularCall`
 
 Prevent vis networks from sending block updates if the entity was invalidated, which will prevent an infinite recursion caused crash while energizing a node being empowered by the bees with Logistic Pipes installed.
+
+## Warded Block Uses World Metadata
+
+**Config option:** `wardingUseWorldMetadata`
+
+Have Warded Blocks treat the world metadata as authoritative rather than the metadata stored in the NBT. Fixes metadata truncation with mods like NEID and EndlessIDs.
+
+**Config option:** `wardingDontStoreNBTMeta`
+
+Stop Warded Blocks from storing their metadata in the NBT, reducing network traffic & save-file size. Requires `wardingUseWorldMetadata`, disabled by default.
+
+**Warning:** Any Warded Blocks loaded when this setting is enabled will become invalid if you uninstall Salis Arcana or disable `wardingUseWorldMetadata`.
+
+## Prevent Traveling Trunk Item Duplication
+
+**Config option:** `preventTravelingTrunkDupe`
+
+Prevent entropy-upgraded Traveling Trunks from absorbing dead items which may have been already collected by something else.
