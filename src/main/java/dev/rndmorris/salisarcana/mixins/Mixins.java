@@ -25,7 +25,9 @@ public enum Mixins implements IMixins {
     // highly unlikely. Furthermore, these mixins being always applied allows for focus quick-stashing to be dynamically
     // enabled & disabled in the future.
     THAUM_ACCESSORS(new SalisBuilder()
-        .addCommonMixins("thaumcraft.common.container.AccessorContainerFocusPouch")
+        .addCommonMixins(
+            "thaumcraft.common.container.AccessorContainerFocusPouch",
+            "thaumcraft.common.tiles.MixinTileInfusionMatrix_Accessor")
         .addRequiredMod(TargetedMod.THAUMCRAFT)),
     CAPTURE_FOCUS_KEYBIND(new SalisBuilder()
         .addClientMixins("thaumcraft.common.lib.events.MixinKeyHandler_CaptureFocusKeybind")
@@ -381,6 +383,11 @@ public enum Mixins implements IMixins {
         .applyIf(SalisConfig.bugfixes.preventTravelingTrunkDupe)
         .addCommonMixins("thaumcraft.common.entities.golems.MixinEntityTravelingTrunk_SkipDeadItems")
         .addRequiredMod(TargetedMod.THAUMCRAFT)),
+    ARCANE_BORE_ACCEPTS_UNBREAKABLE_PICKAXES(new SalisBuilder()
+        .applyIf(SalisConfig.bugfixes.arcaneBoreAcceptsUnbreakablePickaxes)
+        .addCommonMixins("thaumcraft.common.tiles.MixinTileArcaneBore_UnbreakablePickaxes")
+        .addClientMixins("thaumcraft.client.gui.MixinGuiArcaneBore_UnbreakablePickaxes")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
 
     // Features
     EXTENDED_BAUBLES_SUPPORT(new SalisBuilder()
@@ -648,6 +655,11 @@ public enum Mixins implements IMixins {
         .addRequiredMod(TargetedMod.THAUMCRAFT)
         .addRequiredMod(TargetedMod.BAUBLES_EXPANDED)),
 
+    ALCHEMICAL_FURNACE_EFFECTIVE_FUELS(new SalisBuilder()
+        .applyIf(SalisConfig.features.alchemicalFurnaceEffectiveFuels)
+        .addCommonMixins("thaumcraft.common.tiles.MixinTileAlchemyFurnace_EffectiveFuels")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
+
     // Tweaks
 
     POTION_ID_OVERRIDE(new SalisBuilder()
@@ -702,6 +714,11 @@ public enum Mixins implements IMixins {
     NODE_FIX_GET_BLOCK(new SalisBuilder()
         .applyIf(SalisConfig.bugfixes.fixNodeTriggeringChunkLoading)
         .addCommonMixins("thaumcraft.common.tiles.MixinTileNode_ProtectGetBlock")
+        .addRequiredMod(TargetedMod.THAUMCRAFT)),
+
+    NODE_WORLDGEN_CRATER_HUNGRY(new SalisBuilder()
+        .applyIf(SalisConfig.thaum.hungryWorldgenCrater)
+        .addCommonMixins("thaumcraft.common.lib.world.MixinThaumcraftWorldGenerator_HungryNodeCrater")
         .addRequiredMod(TargetedMod.THAUMCRAFT)),
 
     FAKE_PLAYERS_DROP_LOOTBAGS(new SalisBuilder()
